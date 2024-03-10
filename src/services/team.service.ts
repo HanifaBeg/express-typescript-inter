@@ -13,14 +13,32 @@ export const allTeams: Team[] = [
 ];
 export const TeamService = {
   findById(id: number): Team | undefined {
-    return;
+    return allTeams.find((e)=>e.id==id);;
   },
   findAll(): Team[] {
-    return [];
+    return allTeams;
   },
   findByNameMatch(text: string): Team[] {
-    return [];
+    return allTeams.filter(e=>e.name.includes(text));
   },
-  add(team: Team): void {},
-  remove(id: number): void {},
+  add(team: Team): void {
+    const exists=allTeams.some(e=>e.id===team.id)
+    if(!exists)
+    allTeams.push(team)
+  else
+  console.error('This team member already exists')
+  },
+  remove(id: number): void | Team[]{
+    const index=allTeams.findIndex(e=>e.id===id)
+    if(index!=-1)
+    {
+      allTeams.splice(index,1)
+      return allTeams
+     
+    }
+   
+  else
+  console.error('This team member does not exists')
+
+  },
 };

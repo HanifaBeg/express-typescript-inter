@@ -1,1 +1,2 @@
-export * from "./teams";
+//export * from "./teams";
+export {TeamRouter} from './teams/teams.routes'
